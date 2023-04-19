@@ -27,14 +27,19 @@ namespace WindowsFormsApp1 {
         //イベントハンドラ
         private void btPow_Click(object sender, EventArgs e) {
 
-            int x = (int)nudX.Value;
-            int y = (int)nudY.Value;
-            int a = 1;
-            for (int i = 0; i <y ; i++)
-            {
-                a *= x;
-            }
-            tbResult.Text = a.ToString();
+            //int x = (int)nudX.Value;
+            //int y = (int)nudY.Value;
+            //int a = 1;
+            //for (int i = 0; i <y ; i++)
+            //{
+                //a *= x;
+            //}
+            //tbResult.Text = a.ToString();
+
+
+            //模範
+            double result = Math.Pow((double)nudX.Value, (double)nudY.Value);
+            tbResult.Text = result.ToString();
         }
     }
 }
