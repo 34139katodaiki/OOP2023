@@ -12,10 +12,15 @@ namespace BallApp {
         private Timer moveTimer;    //タイマー用
         private SoccerBall soccerBall;
         private PictureBox pb;
+        private TennisBall tennisBall;
+        private Obj Obj;
 
-        private List<SoccerBall> balls = new List<SoccerBall>();    //ボールインスタンス格納
+        private List<Obj> balls = new List<Obj>();    //ボールインスタンス格納
         private List<PictureBox> pbs = new List<PictureBox>();      //表示用
-        int cnt = 0;
+        
+
+
+        
 
         static void Main(string[] args) {
             Application.Run(new Program());
@@ -43,30 +48,53 @@ namespace BallApp {
 
         //マウスクリック時のイベントハンドラ
         private void Program_MouseClick(object sender, MouseEventArgs e) {
-            //ボールインスタンス生成
-            soccerBall = new SoccerBall(e.X-25,e.Y-25);
-            pb = new PictureBox();   //画像を表示するコントロール
-            pb.Image = soccerBall.Image;
-            pb.Location = new Point((int)soccerBall.PosX, (int)soccerBall.PosY);    //画像の位置
-            pb.Size = new Size(50, 50);
-            pb.SizeMode = PictureBoxSizeMode.StretchImage;  //画像の表示モード
-            pb.Parent = this;
+            if (e.Button == MouseButtons.Left)
+            {
+                //ボールインスタンス生成
+                Obj = new SoccerBall(e.X - 25, e.Y - 25);
+                pb = new PictureBox();   //画像を表示するコントロール
+                pb.Image = Obj.Image;
+                pb.Location = new Point((int)Obj.PosX, (int)Obj.PosY);    //画像の位置
+                pb.Size = new Size(50, 50);
+                pb.SizeMode = PictureBoxSizeMode.StretchImage;  //画像の表示モード
+                pb.Parent = this;
 
-            balls.Add(soccerBall);
-            pbs.Add(pb);
-            cnt++;
+                balls.Add(soccerBall);
+                pbs.Add(pb);
+                
+                this.Text = "ボールの数:" + balls.Count;
 
-            moveTimer.Start();  //タイマースタート
+                moveTimer.Start();  //タイマースタート
+            }
+            else
+            {
+                tennisBall = new TennisBall(e.X-15, e.Y-15);
+                pb = new PictureBox();
+                pb.Image = tennisBall.Image;
+                pb.Location = new Point((int)tennisBall.PosX, (int)tennisBall.PosY);
+                pb.Size = new Size(30, 30);
+                pb.SizeMode = PictureBoxSizeMode.StretchImage;
+                pb.Parent = this;
+                balls.Add(tennisBall);
+                pbs.Add(pb);
+                this.Text = "ボールの数:" + balls.Count;
+                moveTimer.Start();  //タイマースタート
+                
+
+
+            }
+            
         }
-
-        //タイマータイムアウト時のイベントハンドラ 
-        private void MoveTimer_Tick(object sender, EventArgs e) {
-            this.Text = "ボールの数:"+cnt;
+            //タイマータイムアウト時のイベントハンドラ 
+            private void MoveTimer_Tick(object sender, EventArgs e) {
+            
             for (int i = 0; i < balls.Count; i++)
             {
                 balls[i].Move();  // 移動
                 pbs[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosY);
+                
             }
+            
         }
     }
 }
