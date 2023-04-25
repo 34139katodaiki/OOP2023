@@ -13,7 +13,6 @@ namespace BallApp {
         private SoccerBall soccerBall;
         private PictureBox pb;
         private TennisBall tennisBall;
-        private Obj Obj;
 
         private List<Obj> balls = new List<Obj>();    //ボールインスタンス格納
         private List<PictureBox> pbs = new List<PictureBox>();      //表示用
@@ -51,10 +50,10 @@ namespace BallApp {
             if (e.Button == MouseButtons.Left)
             {
                 //ボールインスタンス生成
-                Obj = new SoccerBall(e.X - 25, e.Y - 25);
+                soccerBall = new SoccerBall(e.X - 25, e.Y - 25);
                 pb = new PictureBox();   //画像を表示するコントロール
-                pb.Image = Obj.Image;
-                pb.Location = new Point((int)Obj.PosX, (int)Obj.PosY);    //画像の位置
+                pb.Image = soccerBall.Image;
+                pb.Location = new Point((int)soccerBall.PosX, (int)soccerBall.PosY);    //画像の位置
                 pb.Size = new Size(50, 50);
                 pb.SizeMode = PictureBoxSizeMode.StretchImage;  //画像の表示モード
                 pb.Parent = this;
