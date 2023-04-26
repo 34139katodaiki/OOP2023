@@ -36,11 +36,8 @@ namespace BallApp {
 
 
         //抽象メソッド
-        public abstract void Move();
+        public abstract void Move(PictureBox pbbar,PictureBox pbball);
         public abstract void Move(Keys direction);
-
-        
-
 
     }
 }

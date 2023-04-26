@@ -11,13 +11,12 @@ namespace BallApp {
 
         public Bar(double xp ,double yp ):base(xp,yp, @"pic\bar.png") {
 
-            MoveX = 30;
-            MoveY = 0;
+            
 
         }
 
 
-        public override void Move() {
+        public override void Move(PictureBox pbbar, PictureBox pbball) {
             //空のメソッド
             
         }

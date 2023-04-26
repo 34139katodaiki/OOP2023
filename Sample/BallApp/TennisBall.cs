@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,9 +24,12 @@ namespace BallApp {
 
         public static int Count { get => count; set => count = value; }
 
-        public override void Move() {
+        public override void Move(PictureBox pbbar, PictureBox pbball) {
 
-            if (PosY > 550 || PosY < 0)
+            Rectangle rbar = new Rectangle(pbbar.Location.X, pbbar.Location.Y, pbbar.Width, pbbar.Height);
+            Rectangle rball = new Rectangle(pbball.Location.X, pbball.Location.Y, pbball.Width, pbball.Height);
+
+            if (PosY > 550 || PosY < 0 || rbar.IntersectsWith(rball))
             {
                 MoveY = -MoveY;
             }
