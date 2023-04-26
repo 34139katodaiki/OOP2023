@@ -14,7 +14,7 @@ namespace BallApp {
         private double posY;    //y座標
         private double moveX;  //移動量(x方向)
         private double moveY;  //移動量(y方向)
-
+        
 
 
         public Obj(double PosX, double PosY,string Path) {
@@ -31,6 +31,8 @@ namespace BallApp {
         public double PosY { get => posY; set => posY = value; }
         public double MoveY { get => moveY; set => moveY = value; }
         public double MoveX { get => moveX; set => moveX = value; }
+        
+
 
         //抽象メソッド
         public abstract void Move();
