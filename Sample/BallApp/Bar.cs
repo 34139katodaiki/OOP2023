@@ -21,7 +21,7 @@ namespace BallApp {
             //空のメソッド
             
         }
-        public void Move(Keys directuon) {
+        public override void Move(Keys directuon) {
 
             if (directuon==Keys.Right)
             {
