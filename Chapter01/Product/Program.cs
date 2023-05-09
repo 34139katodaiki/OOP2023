@@ -30,6 +30,36 @@ namespace ProductSample {
             //10日前
             DateTime daysBefore10 = date.AddDays(-10);
             Console.WriteLine("10日前:" + daysBefore10.Year + "年" + daysBefore10.Month + "月" + daysBefore10.Day + "日");
+
+            Console.WriteLine();
+
+            Console.WriteLine("誕生日を入力");
+
+            Console.Write("西暦:");
+            int birthyear = int.Parse(Console.ReadLine());
+
+
+
+            Console.Write("月:");
+            int birthmonth = int.Parse(Console.ReadLine());
+
+            Console.Write("日:");
+            int  birthday = int.Parse(Console.ReadLine());
+
+
+            DateTime birth = new DateTime(birthyear, birthmonth, birthday);
+
+            TimeSpan timeSpan = date - birth;
+
+            Console.WriteLine("あなたは生まれてから今日まで"+timeSpan.Days+"日目です");
+
+
+            
+            
+            
+
+
+
         }
     }
 }
