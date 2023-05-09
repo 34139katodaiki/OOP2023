@@ -53,7 +53,8 @@ namespace ProductSample {
 
             Console.WriteLine("あなたは生まれてから今日まで"+timeSpan.Days+"日目です");
 
-
+            string dotw = birth.ToString("dddd");
+            Console.WriteLine(dotw);
             
             
             
