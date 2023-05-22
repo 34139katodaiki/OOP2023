@@ -9,24 +9,24 @@ namespace Exercise03 {
 
         static void Main(string[] args) {
             var sales = new SalesCounter((@"data\sales.csv"));
-            Console.WriteLine("***売上集計**");
-            Console.WriteLine("1:店舗別売上");
-            Console.WriteLine("2:商品カテゴリー別売上");
+            Console.WriteLine("**売上集計**");
+            Console.WriteLine("1:店舗別売り上げ");
+            Console.WriteLine("2:商品カテゴリー別売り上げ");
+            Console.Write(">");
             string num = Console.ReadLine();
+            IDictionary<string, int> amountPerStore;
             if (num == "1") {
-                var amountPerStore = sales.GetPerStoreSales();
-                foreach (var obj in amountPerStore) {
-                    Console.WriteLine("{0} {1:C}", obj.Key, obj.Value);
-                }
+                amountPerStore = sales.GetPerStoreSales();
+                
             }
-            else if(num=="2") {
-                var amountPerStore = sales.GetPerProductCategory();
-                foreach (var obj in amountPerStore) {
-                    Console.WriteLine("{0} {1:C}", obj.Key, obj.Value);
-                }
+            else  {
+                amountPerStore = sales.GetPerProductCategory();
+                
             }
-            
-            
+            foreach (var obj in amountPerStore) {
+                Console.WriteLine("{0} {1:C}", obj.Key, obj.Value);
+            }
+
         }
     }
 }
