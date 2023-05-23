@@ -26,15 +26,25 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_1(List<int> numbers) {
+            var exists = numbers.Exists(s => s % 8 == 0 || s % 9 == 0);
+            if (exists == true) {
+                Console.WriteLine("存在します");
+            }
+            else {
+                Console.WriteLine("存在しません");
+            }
 
         }
 
         private static void Exercise1_2(List<int> numbers) {
-
+            numbers.ForEach(s =>  Console.WriteLine(s / 2.0));
         }
 
         private static void Exercise1_3(List<int> numbers) {
-
+            var num = numbers.Where(s => s >= 50);
+            foreach (var nums in num) {
+                Console.WriteLine(nums);
+            }
         }
 
         private static void Exercise1_4(List<int> numbers) {
