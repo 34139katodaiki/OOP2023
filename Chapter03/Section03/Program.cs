@@ -10,6 +10,14 @@ namespace Section03 {
             var list = new List<string> {
                "Tokyo", "New Delhi", "Bangkok", "London", "Paris", "Berlin", "Canberra", "Hong Kong",
             };
+
+
+
+            var names = list.ConvertAll(s => s.ToLower());
+            names.ForEach(s => Console.WriteLine(s));
+            
+
+            
         }
     }
 }
