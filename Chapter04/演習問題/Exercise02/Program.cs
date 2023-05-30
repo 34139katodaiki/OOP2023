@@ -9,7 +9,7 @@ namespace Exercise02 {
     class Program {
         static void Main(string[] args) {
 
-            var ym = new YearMonth(2023, 5);
+            var ym = new YearMonth(2023, 12);
             bool c21 = ym.Is21Century;
             var yemo =ym.AddOneMonth();
             Console.WriteLine(ym);

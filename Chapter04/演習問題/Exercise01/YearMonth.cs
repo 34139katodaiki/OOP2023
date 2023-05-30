@@ -27,7 +27,7 @@ namespace Exercise01 {
         //4.1.3
         public YearMonth AddOneMonth() {
             var year = Month == 12 ? Year + 1 : Year;
-            var mon = Month == 12 ? 0 : Month + 1;
+            var mon = Month == 12 ? 1 : Month + 1;
             return new YearMonth(year, mon);
             
             
