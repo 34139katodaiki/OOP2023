@@ -12,7 +12,8 @@ namespace Exercise02 {
             var ym = new YearMonth(2023, 5);
             bool c21 = ym.Is21Century;
             var yemo =ym.AddOneMonth();
-            
+            Console.WriteLine(ym);
+            Console.WriteLine(yemo);
 
 
         }
