@@ -25,9 +25,13 @@ namespace Exercise01 {
 
 
         //4.1.3
-        //public YearMonth AddOneMonth() {
+        public YearMonth AddOneMonth() {
+            var year = Month == 12 ? Year + 1 : Year;
+            var mon = Month == 12 ? 0 : Month + 1;
+            var yemo = new YearMonth(year, mon);
             
-        //}
+            return yemo;
+        }
 
         //4.1.4
         //public override string ToString() {
