@@ -30,6 +30,17 @@ namespace Exercise01 {
             var mon = Month == 12 ? 1 : Month + 1;
             return new YearMonth(year, mon);
             
+
+            //模範解答
+            //if(Month == 12) {
+            //    return new YearMonth(year + 1, 1);
+            //}
+            //else {
+            //    return new YearMonth(Year, Month + 1);
+            //}
+
+            //模範解答
+            //return new YearMonth(Month == 12 ? Year + 1 : Year, Month == 12 ? 1 : Month + 1);
             
         }
 
