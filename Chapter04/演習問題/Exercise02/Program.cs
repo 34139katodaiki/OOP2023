@@ -23,6 +23,8 @@ namespace Exercise02 {
             Exercise2_2(ymCollection);
             Console.WriteLine("\n- 4.2.4 ---");
 
+            FindFirst21C(ymCollection);
+
             // 4.2.4
             //Exercise2_4(ymCollection);
             //Console.WriteLine("\n- 4.2.5 ---");
@@ -39,9 +41,15 @@ namespace Exercise02 {
         }
 
         //4.2.3
-        //static YearMonth FindFirst21C(YearMonth[] yms) {
-        //    yms
-        //}
+        static YearMonth FindFirst21C(YearMonth[] yms) {
+            foreach (var item in yms) {
+                if (item.Is21Century) {
+                    return item;
+                }
+                
+            }
+            return null;
+        }
 
 
         //private static void Exercise2_4(YearMonth[] ymCollection) {
