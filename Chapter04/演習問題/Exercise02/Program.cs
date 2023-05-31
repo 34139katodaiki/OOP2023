@@ -30,8 +30,9 @@ namespace Exercise02 {
             Console.WriteLine("\n- 4.2.5 ---");
 
 
-            //// 4.2.5
-            //Exercise2_5(ymCollection);
+            // 4.2.5
+            Exercise2_5(ymCollection);
+
         }
 
         private static void Exercise2_2(YearMonth[] ymCollection) {
@@ -57,15 +58,19 @@ namespace Exercise02 {
             if(ym == null) {
                 Console.WriteLine("21世紀のデータはありません");
             }
-            Console.WriteLine(ym); 
-            
+            Console.WriteLine(ym);
+
+            //別解
+            //Console.WriteLine(ym?.ToString() ?? "21世紀のデータはありません");
+
         }
 
-        //private static void Exercise2_5(YearMonth[] ymCollection) {
+        private static void Exercise2_5(YearMonth[] ymCollection) {
+            var array = ymCollection.Select(ym => ym.AddOneMonth()).ToArray();
+            foreach (var item in array) {
+                Console.WriteLine(item);
+            }
             
-        //    foreach (var ym in ymCollection) {
-        //        ym.AddOneMonth();
-        //    }
-        //}
+        }
     }
 }
