@@ -9,13 +9,47 @@ namespace Exercise02 {
     class Program {
         static void Main(string[] args) {
 
-            var ym = new YearMonth(2023, 12);
-            bool c21 = ym.Is21Century;
-            var yemo =ym.AddOneMonth();
-            Console.WriteLine(ym);
-            Console.WriteLine(yemo);
+            // 4.2.1
+            var ymCollection = new YearMonth[] {
+                new YearMonth(1980, 1),
+                new YearMonth(1990, 4),
+                new YearMonth(2000, 7),
+                new YearMonth(2010, 9),
+                new YearMonth(2020, 12),
+            };
+
+            // 4.2.2
+            Console.WriteLine("\n- 4.2.2 ---");
+            Exercise2_2(ymCollection);
+            Console.WriteLine("\n- 4.2.4 ---");
+
+            // 4.2.4
+            //Exercise2_4(ymCollection);
+            //Console.WriteLine("\n- 4.2.5 ---");
 
 
+            //// 4.2.5
+            //Exercise2_5(ymCollection);
         }
+
+        private static void Exercise2_2(YearMonth[] ymCollection) {
+            foreach (var item in ymCollection) {
+                Console.WriteLine(item);
+            }
+        }
+
+        //4.2.3
+        //static YearMonth FindFirst21C(YearMonth[] yms) {
+        //    yms
+        //}
+
+
+        //private static void Exercise2_4(YearMonth[] ymCollection) {
+            
+        //}
+
+        //private static void Exercise2_5(YearMonth[] ymCollection) {
+            
+        //}
     }
 }
