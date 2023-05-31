@@ -12,8 +12,11 @@ namespace Exercise02 {
             var line = Console.ReadLine();
             int num;
             if(int.TryParse(line,out num)) {
-                var s1 = string.Format("{0,10:#,0}", num);
+                var s1 = string.Format("{0:#,0}", num);
                 Console.WriteLine(s1);
+            }
+            else {
+                Console.WriteLine("数値文字列ではありません");
             }
         }
     }
