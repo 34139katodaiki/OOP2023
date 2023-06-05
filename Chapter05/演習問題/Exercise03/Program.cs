@@ -27,7 +27,7 @@ namespace Exercise03 {
 
         private static void Exercise3_1(string text) {
             var num = text.Count(s => s ==' ');
-            Console.WriteLine(num);
+            Console.WriteLine("空白数:"+num);
         }
 
         private static void Exercise3_2(string text) {
@@ -37,10 +37,16 @@ namespace Exercise03 {
 
         private static void Exercise3_3(string text) {
             var num = text.Split(' ').Length;
-            Console.WriteLine(num);
+            Console.WriteLine("単語数"+num);
         }
 
         private static void Exercise3_4(string text) {
+            var st = text.Split(' ');
+            foreach (var item in st) {
+                if(item.Length < 5 ) {
+                    Console.WriteLine(item);
+                }
+            }
         }
 
         private static void Exercise3_5(string text) {
