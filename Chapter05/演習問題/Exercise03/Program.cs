@@ -43,7 +43,7 @@ namespace Exercise03 {
         private static void Exercise3_4(string text) {
             var st = text.Split(' ');
             foreach (var item in st) {
-                if(item.Length < 5 ) {
+                if (item.Length <= 4) {
                     Console.WriteLine(item);
                 }
             }
