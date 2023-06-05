@@ -58,12 +58,25 @@ namespace Exercise03 {
 
         private static void Exercise3_5(string text) {
             var st = text.Split(' ');
-            var sb = new StringBuilder();
-            foreach (var item in st) {
-                sb.Append(item+' ');
+            if (st.Length > 0) {
+                var sb = new StringBuilder();
+                foreach (var item in st) {
+                    sb.Append(item + ' ');
+                }
+                var str = sb.ToString().TrimEnd();
+                Console.WriteLine(str);
             }
-            var str = sb.ToString().TrimEnd();
-            Console.WriteLine(str);
         }
+
+
+            //var st = text.Split(' ');
+            //var sb = new StringBuilder(st[0]);
+            
+            //foreach (var item in st.skip(1)) {
+            //    sb.Append(' '+item);
+            //}
+            //var str = sb.ToString();
+            //Console.WriteLine(str);
+
     }
 }
