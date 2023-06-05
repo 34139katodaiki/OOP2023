@@ -26,7 +26,7 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_1(string text) {
-            int num = text.Count(s => s ==' ');
+            var num = text.Count(s => s ==' ');
             Console.WriteLine(num);
         }
 
@@ -36,6 +36,8 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_3(string text) {
+            var num = text.Split(' ').Length;
+            Console.WriteLine(num);
         }
 
         private static void Exercise3_4(string text) {
