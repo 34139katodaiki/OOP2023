@@ -33,7 +33,13 @@ namespace Exercise01 {
 
             Console.WriteLine(numbers[numbers.Length - 1]);
             Console.WriteLine(numbers[numbers.Length -2]);
-            
+
+            //var skip = numbers.Length - 2;
+            //foreach (var n in numbers.Skip(skip))
+            //    Console.WriteLine(n);
+
+
+
         }
 
         private static void Exercise1_3(int[] numbers) {
@@ -44,6 +50,12 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_4(int[] numbers) {
+            var nums = numbers.OrderBy(x => x);
+            
+            foreach (var num in nums.Take(3)) {
+                Console.WriteLine(num);
+            }
+            
         }
 
         private static void Exercise1_5(int[] numbers) {
