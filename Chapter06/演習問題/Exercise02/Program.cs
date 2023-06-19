@@ -41,8 +41,10 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_1(List<Book> books) {
-            
-            
+            var book = books.Where(b => b.Title.Contains("ワンダフル・C#ライフ"));
+            foreach (var item in book) {
+                Console.WriteLine(item.Price+"円" + item.Pages+"ページ");
+            }
         }
 
         private static void Exercise2_2(List<Book> books) {
