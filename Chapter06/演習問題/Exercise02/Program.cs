@@ -53,6 +53,8 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_3(List<Book> books) {
+            var pageave = books.Where(b => b.Title.Contains("C#")).Average(b => b.Pages);
+            Console.WriteLine(pageave);
         }
 
         private static void Exercise2_4(List<Book> books) {
