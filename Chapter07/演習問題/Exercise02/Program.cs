@@ -8,7 +8,7 @@ namespace Exercise02 {
     class Program {
         static void Main(string[] args) {
             var abbrs = new Abbreviations();
-            abbrs.Count();
+            
         }
     }
 }
