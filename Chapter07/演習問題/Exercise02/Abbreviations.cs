@@ -48,7 +48,13 @@ namespace Exercise02 {
         public int Count { get {return  _dict.Count(); } }
 
         //7.2.2
-        
+        public bool Remove(string abb) {
+            if (_dict.ContainsKey(abb)) {
+                var di = _dict.Remove(abb);
+                return true;
+            }
+            return false;
+        }
 
 
 
