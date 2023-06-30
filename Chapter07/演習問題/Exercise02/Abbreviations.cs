@@ -49,11 +49,7 @@ namespace Exercise02 {
 
         //7.2.2
         public bool Remove(string abb) {
-            
-                return _dict.Remove(abb);
-                
-            
-            
+            return _dict.Remove(abb);
         }
 
         public IEnumerator<KeyValuePair<string, string>> GetEnumerator() {

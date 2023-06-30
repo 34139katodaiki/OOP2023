@@ -13,14 +13,17 @@ namespace Exercise02 {
 
             //7.2.3
             Console.WriteLine(abbrs.Count);
+            Console.WriteLine();
 
             //7.2.3
-            abbrs.Remove("IOC");
-            Console.WriteLine(abbrs.Count);
+            if (abbrs.Remove("NPT"))
+                Console.WriteLine(abbrs.Count);
+            if (!abbrs.Remove("NPT"))
+                Console.WriteLine("削除できません");
+            Console.WriteLine();
 
             //7.2.4
-            var threedi = abbrs.Where(x => x.Key.Length == 3);
-            foreach (var item in threedi) {
+            foreach (var item in abbrs.Where(x => x.Key.Length == 3)) {
                 Console.WriteLine("{0}={1}", item.Key, item.Value);
             }
 
