@@ -19,7 +19,10 @@ namespace Exercise02 {
             Console.WriteLine(abbrs.Count);
 
             //7.2.4
-            
+            var threedi = abbrs.Where(x => x.Key.Length == 3);
+            foreach (var item in threedi) {
+                Console.WriteLine("{0}={1}", item.Key, item.Value);
+            }
 
         }
     }
