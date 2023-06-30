@@ -49,11 +49,11 @@ namespace Exercise02 {
 
         //7.2.2
         public bool Remove(string abb) {
-            if (_dict.ContainsKey(abb)) {
-                var di = _dict.Remove(abb);
-                return true;
-            }
-            return false;
+            
+                return _dict.Remove(abb);
+                
+            
+            
         }
 
 

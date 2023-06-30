@@ -17,6 +17,10 @@ namespace Exercise02 {
             //7.2.3
             abbrs.Remove("IOC");
             Console.WriteLine(abbrs.Count);
+
+            //7.2.4
+            
+
         }
     }
 }
