@@ -31,5 +31,7 @@ namespace CarReportSystem {
             輸入車,
             その他,
         }
+
+        
     }
 }
