@@ -20,17 +20,39 @@ namespace CarReportSystem {
 
         //追加ボタンがクリックされたときのイベントハンドラー
         private void btAddReport_Click(object sender, EventArgs e) {
-            var Car = new CarReport {
-                Date = dtpDate.Value,
-                Author = cbAuthor.Text,
-                Maker = getSelectedMaker(),
-                CarName = cbCarName.Text,
-                Report = tbReport.Text,
-                CarImage = pbCarImage.Image,
-            };
-            CarReports.Add(Car);
-            btModifyReport.Enabled = true;
+            stasLabelDisp("");
+            if (cbAuthor.Text == "") {
+                stasLabelDisp("記録者入力して");
+                return;
+                //MessageBox.Show("入力して");
+            }
+            else if (cbCarName.Text == "") {
+                stasLabelDisp("車名入力して");
+                return;
+            }
             
+                var Car = new CarReport {
+
+                    Date = dtpDate.Value,
+                    Author = cbAuthor.Text,
+                    Maker = getSelectedMaker(),
+                    CarName = cbCarName.Text,
+                    Report = tbReport.Text,
+                    CarImage = pbCarImage.Image,
+                };
+                CarReports.Add(Car);
+                if (!cbAuthor.Items.Contains(cbAuthor.Text)) {
+                    cbAuthor.Items.Add(cbAuthor.Text);
+                }
+                if (!cbCarName.Items.Contains(cbCarName.Text)) {
+                    cbCarName.Items.Add(cbCarName.Text);
+                }
+                
+                dgvCarReports.ClearSelection();
+                clear();
+
+            
+ 
         }
         //ラジオボタンで選択されているメーカーを返却
         private CarReport.MakerGroup getSelectedMaker() {
@@ -100,12 +122,17 @@ namespace CarReportSystem {
 
         private void btDeleteReport_Click(object sender, EventArgs e) {
                 CarReports.Remove(CarReports[dgvCarReports.CurrentCell.RowIndex]);
-                //CarReports.RemoveAt(dgvCarReports.CurrentRow.Index);
+            //CarReports.RemoveAt(dgvCarReports.CurrentRow.Index);
+            if (CarReports.Count == 0) {
+                btModifyReport.Enabled = false;
+                btDeleteReport.Enabled = false;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReports.Columns[5].Visible = false;
             btModifyReport.Enabled = false;
+            btDeleteReport.Enabled = false;
         }
 
         private void cellcrick(object sender, DataGridViewCellEventArgs e) {
@@ -115,10 +142,21 @@ namespace CarReportSystem {
             cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
             tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
             pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
+            btModifyReport.Enabled = true;
+            btDeleteReport.Enabled = true;
         }
 
         private void btModifyReport_Click(object sender, EventArgs e) {
-            
+            stasLabelDisp("");
+            if (cbAuthor.Text == "") {
+                stasLabelDisp("記録者入力して");
+                return;
+                //MessageBox.Show("入力して");
+            }
+            else if (cbCarName.Text == "") {
+                stasLabelDisp("車名入力して");
+                return;
+            }
             CarReports[dgvCarReports.CurrentRow.Index].Date = dtpDate.Value;
             CarReports[dgvCarReports.CurrentRow.Index].Author = cbAuthor.Text;
             CarReports[dgvCarReports.CurrentRow.Index].Maker = getSelectedMaker();
@@ -126,6 +164,33 @@ namespace CarReportSystem {
             CarReports[dgvCarReports.CurrentRow.Index].Report = tbReport.Text;
             CarReports[dgvCarReports.CurrentRow.Index].CarImage = pbCarImage.Image;
             dgvCarReports.Refresh();
+        }
+
+        private void clear() {
+            cbAuthor.Text = "";
+            rbToyota.Checked = true;
+            cbCarName.Text = "";
+            tbReport.Text = "";
+            pbCarImage.Image = null;
+            
+        }
+
+        private void 終了XToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
+        //ステータスラベルのテキスト
+        private void stasLabelDisp(string msg) {
+            tsInfoText.Text = msg;
+        }
+
+        private void 色設定ToolStripMenuItem1_Click(object sender, EventArgs e) {
+            cdColor.ShowDialog();
+            
+        }
+
+        private void バージョン情報ToolStripMenuItem_Click(object sender, EventArgs e) {
+            var vf = new VersionForm();
+            vf.ShowDialog();    //モーダルダイアログとして表示
         }
     }
 }
