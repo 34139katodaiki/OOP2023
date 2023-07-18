@@ -12,7 +12,7 @@ namespace CarReportSystem {
     public partial class Form1 : Form {
         //管理用データ
         BindingList<CarReport> CarReports = new BindingList<CarReport>();
-
+        int mode = 0;
         public Form1() {
             InitializeComponent();
             dgvCarReports.DataSource = CarReports;
@@ -31,25 +31,27 @@ namespace CarReportSystem {
                 return;
             }
             
-                var Car = new CarReport {
+            var Car = new CarReport {
 
-                    Date = dtpDate.Value,
-                    Author = cbAuthor.Text,
-                    Maker = getSelectedMaker(),
-                    CarName = cbCarName.Text,
-                    Report = tbReport.Text,
-                    CarImage = pbCarImage.Image,
-                };
-                CarReports.Add(Car);
-                if (!cbAuthor.Items.Contains(cbAuthor.Text)) {
-                    cbAuthor.Items.Add(cbAuthor.Text);
-                }
-                if (!cbCarName.Items.Contains(cbCarName.Text)) {
-                    cbCarName.Items.Add(cbCarName.Text);
-                }
+            Date = dtpDate.Value,
+            Author = cbAuthor.Text,
+            Maker = getSelectedMaker(),
+            CarName = cbCarName.Text,
+            Report = tbReport.Text,
+            CarImage = pbCarImage.Image,
+            };
+            CarReports.Add(Car);
                 
-                dgvCarReports.ClearSelection();
-                clear();
+            //メソッドにしたほうがよい
+            if (!cbAuthor.Items.Contains(cbAuthor.Text)) {
+                 cbAuthor.Items.Add(cbAuthor.Text);
+            }
+            if (!cbCarName.Items.Contains(cbCarName.Text)) {
+                 cbCarName.Items.Add(cbCarName.Text);
+            }
+                
+            dgvCarReports.ClearSelection();
+            clear();
 
             
  
@@ -114,8 +116,11 @@ namespace CarReportSystem {
         }
 
         private void btImageOpen_Click(object sender, EventArgs e) {
-            ofdImageFileOpen.ShowDialog();
-            pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
+            if(ofdImageFileOpen.ShowDialog() == DialogResult.OK) {
+                pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
+            }
+            
+            
         }
 
         private void btDeleteReport_Click(object sender, EventArgs e) {
@@ -132,6 +137,7 @@ namespace CarReportSystem {
             dgvCarReports.Columns[5].Visible = false;
             btModifyReport.Enabled = false;
             btDeleteReport.Enabled = false;
+            timelabel.Text=(dtpDate.Value.ToString());
         }
 
         private void cellcrick(object sender, DataGridViewCellEventArgs e) {
@@ -188,13 +194,22 @@ namespace CarReportSystem {
         }
 
         private void 色設定ToolStripMenuItem1_Click(object sender, EventArgs e) {
-            cdColor.ShowDialog();
-            this.BackColor = cdColor.Color;
+            if(cdColor.ShowDialog() == DialogResult.OK) {
+                BackColor = cdColor.Color;
+            }
+            
         }
 
         private void バージョン情報ToolStripMenuItem_Click(object sender, EventArgs e) {
             var vf = new VersionForm();
             vf.ShowDialog();    //モーダルダイアログとして表示
+        }
+
+        private void btScaleChange_Click(object sender, EventArgs e) {
+
+            mode = mode < 4 ? ++mode : 0;
+            pbCarImage.SizeMode = (PictureBoxSizeMode)mode;
+            
         }
     }
 }
