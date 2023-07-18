@@ -47,7 +47,7 @@ namespace CarReportSystem {
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "VersionForm";
-            this.Text = "VersionForm";
+            this.Text = "Version";
             this.ResumeLayout(false);
 
         }

@@ -113,15 +113,14 @@ namespace CarReportSystem {
 
         }
 
-
-
-            private void btImageOpen_Click(object sender, EventArgs e) {
+        private void btImageOpen_Click(object sender, EventArgs e) {
             ofdImageFileOpen.ShowDialog();
             pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
         }
 
         private void btDeleteReport_Click(object sender, EventArgs e) {
-                CarReports.Remove(CarReports[dgvCarReports.CurrentCell.RowIndex]);
+            CarReports.Remove(CarReports[dgvCarReports.CurrentCell.RowIndex]);
+            clear();
             //CarReports.RemoveAt(dgvCarReports.CurrentRow.Index);
             if (CarReports.Count == 0) {
                 btModifyReport.Enabled = false;
@@ -136,14 +135,17 @@ namespace CarReportSystem {
         }
 
         private void cellcrick(object sender, DataGridViewCellEventArgs e) {
-            dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
-            cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
-            setSelectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
-            cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
-            tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
-            pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
-            btModifyReport.Enabled = true;
-            btDeleteReport.Enabled = true;
+            if (CarReports.Count != 0) {
+                dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
+                cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
+                setSelectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
+                cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
+                tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
+                pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
+                btModifyReport.Enabled = true;
+                btDeleteReport.Enabled = true;
+            }
+            
         }
 
         private void btModifyReport_Click(object sender, EventArgs e) {
@@ -172,7 +174,9 @@ namespace CarReportSystem {
             cbCarName.Text = "";
             tbReport.Text = "";
             pbCarImage.Image = null;
-            
+            btModifyReport.Enabled = false;
+            btDeleteReport.Enabled = false;
+
         }
 
         private void 終了XToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -185,7 +189,7 @@ namespace CarReportSystem {
 
         private void 色設定ToolStripMenuItem1_Click(object sender, EventArgs e) {
             cdColor.ShowDialog();
-            
+            this.BackColor = cdColor.Color;
         }
 
         private void バージョン情報ToolStripMenuItem_Click(object sender, EventArgs e) {
