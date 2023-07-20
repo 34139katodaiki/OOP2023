@@ -7,12 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
         //管理用データ
         BindingList<CarReport> CarReports = new BindingList<CarReport>();
         int mode = 0;
+
+        //設定情報保存用オブジェクト
+        Settings settings = new Settings();
+
         public Form1() {
             InitializeComponent();
             dgvCarReports.DataSource = CarReports;
@@ -138,6 +144,14 @@ namespace CarReportSystem {
             btModifyReport.Enabled = false;
             btDeleteReport.Enabled = false;
             timelabel.Text=(dtpDate.Value.ToString());
+
+            //設定の逆シリアル化
+            using (var reader = XmlReader.Create("Settings.xml")) {
+                var serializer = new XmlSerializer(typeof(Settings));
+                var setting = serializer.Deserialize(reader) as Settings;
+                BackColor = Color.FromArgb(setting.MainFormColor);
+            }
+
         }
 
         private void cellcrick(object sender, DataGridViewCellEventArgs e) {
@@ -196,6 +210,7 @@ namespace CarReportSystem {
         private void 色設定ToolStripMenuItem1_Click(object sender, EventArgs e) {
             if(cdColor.ShowDialog() == DialogResult.OK) {
                 BackColor = cdColor.Color;
+                settings.MainFormColor = cdColor.Color.ToArgb();
             }
             
         }
@@ -207,9 +222,19 @@ namespace CarReportSystem {
 
         private void btScaleChange_Click(object sender, EventArgs e) {
 
-            mode = mode < 4 ? ++mode : 0;
+            mode = mode < 4 ? ((mode==1)? 3 : ++mode) : 0; //AutoSize(2)を除外
             pbCarImage.SizeMode = (PictureBoxSizeMode)mode;
             
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+            //設定ファイルのシリアル化
+            using(var writer = XmlWriter.Create("Settings.xml")) {
+                var serializer = new XmlSerializer(settings.GetType());
+                serializer.Serialize(writer, settings);
+            }
+
+
         }
     }
 }
