@@ -14,8 +14,8 @@ namespace CarReportSystem {
     public partial class Form1 : Form {
         //管理用データ
         BindingList<CarReport> CarReports = new BindingList<CarReport>();
-        int mode = 0;
-
+        private uint mode;
+        
         //設定情報保存用オブジェクト
         Settings settings = new Settings();
 
@@ -143,13 +143,14 @@ namespace CarReportSystem {
             dgvCarReports.Columns[5].Visible = false;
             btModifyReport.Enabled = false;
             btDeleteReport.Enabled = false;
-            timelabel.Text=(dtpDate.Value.ToString());
-
+            //tsTimeDisp.Text=(DateTime.Now.ToString("HH時mm分ss秒"));
+            tsInfo.Text = "";
+            tmTime.Start();
             //設定の逆シリアル化
             using (var reader = XmlReader.Create("Settings.xml")) {
                 var serializer = new XmlSerializer(typeof(Settings));
-                var setting = serializer.Deserialize(reader) as Settings;
-                BackColor = Color.FromArgb(setting.MainFormColor);
+                settings = serializer.Deserialize(reader) as Settings;
+                BackColor = Color.FromArgb(settings.MainFormColor);
             }
 
         }
@@ -235,6 +236,14 @@ namespace CarReportSystem {
             }
 
 
+        }
+
+        private void btImageDelete_Click(object sender, EventArgs e) {
+            pbCarImage.Image = null;
+        }
+
+        private void time(object sender, EventArgs e) {
+            tsTimeDisp.Text = DateTime.Now.ToString("HH時mm分ss秒");
         }
     }
 }
