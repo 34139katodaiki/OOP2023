@@ -147,11 +147,18 @@ namespace CarReportSystem {
             tsInfo.Text = "";
             tmTime.Start();
             //設定の逆シリアル化
-            using (var reader = XmlReader.Create("Settings.xml")) {
-                var serializer = new XmlSerializer(typeof(Settings));
-                settings = serializer.Deserialize(reader) as Settings;
-                BackColor = Color.FromArgb(settings.MainFormColor);
+            try {
+                using (var reader = XmlReader.Create("Settings.xml")) {
+                    var serializer = new XmlSerializer(typeof(Settings));
+                    settings = serializer.Deserialize(reader) as Settings;
+                    BackColor = Color.FromArgb(settings.MainFormColor);
+                }
             }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+                
+            }
+            
 
         }
 
