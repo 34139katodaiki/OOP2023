@@ -49,14 +49,11 @@ namespace CarReportSystem {
             CarImage = pbCarImage.Image,
             };
             CarReports.Add(Car);
-                
-            //メソッドにしたほうがよい
-            if (!cbAuthor.Items.Contains(cbAuthor.Text)) {
-                 cbAuthor.Items.Add(cbAuthor.Text);
-            }
-            if (!cbCarName.Items.Contains(cbCarName.Text)) {
-                 cbCarName.Items.Add(cbCarName.Text);
-            }
+
+            
+            setcbCarname(cbCarName.Text);
+            setcbAuther(cbAuthor.Text);
+            
                 
             dgvCarReports.ClearSelection();
             clear();
@@ -282,19 +279,29 @@ namespace CarReportSystem {
                         CarReports = (BindingList<CarReport>)bf.Deserialize(fs);
                         dgvCarReports.DataSource = null;
                         dgvCarReports.DataSource = CarReports;
-                        foreach (var item in CarReports) {
-                            if (!cbAuthor.Items.Contains(item.Author)) {
-                                cbAuthor.Items.Add(item.Author);
-                            }
-                            if (!cbCarName.Items.Contains(item.CarName)) {
-                                cbCarName.Items.Add(item.CarName);
-                            }
+                        dgvCarReports.ClearSelection();
+
+                        foreach (var report in CarReports) {
+                            setcbAuther(report.Author);
+                            setcbCarname(report.CarName);
+                            
                         }
                     }
                 }
                 catch (Exception ex) {
                     MessageBox.Show(ex.Message);
                 }
+            }
+        }
+
+        private void setcbCarname(string carname) {
+            if (!cbCarName.Items.Contains(carname)) {
+                cbCarName.Items.Add(carname);
+            }
+        }
+        private void setcbAuther(string auther) {
+            if (!cbAuthor.Items.Contains(auther)) {
+                cbAuthor.Items.Add(auther);
             }
         }
     }
