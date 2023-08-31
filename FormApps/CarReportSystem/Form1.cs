@@ -145,6 +145,8 @@ namespace CarReportSystem {
             //tsTimeDisp.Text=(DateTime.Now.ToString("HH時mm分ss秒"));
             tsInfo.Text = "";
             tmTime.Start();
+            dgvCarReports.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;  //奇数行の色変更
+
             //設定の逆シリアル化
             try {
                 using (var reader = XmlReader.Create("Settings.xml")) {
@@ -280,7 +282,9 @@ namespace CarReportSystem {
                         dgvCarReports.DataSource = null;
                         dgvCarReports.DataSource = CarReports;
                         dgvCarReports.ClearSelection();
-
+                        dgvCarReports.Columns[5].Visible = false;
+                        cbCarName.Items.Clear();
+                        cbAuthor.Items.Clear();
                         foreach (var report in CarReports) {
                             setcbAuther(report.Author);
                             setcbCarname(report.CarName);
