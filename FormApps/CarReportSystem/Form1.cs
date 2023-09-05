@@ -17,13 +17,14 @@ namespace CarReportSystem {
         //管理用データ
         BindingList<CarReport> CarReports = new BindingList<CarReport>();
         private uint mode;
-        
+
         //設定情報保存用オブジェクト
-        Settings settings = new Settings();
+        Settings settings = Settings.getInstance();
+
 
         public Form1() {
             InitializeComponent();
-            dgvCarReports.DataSource = CarReports;
+            //dgvCarReports.DataSource = CarReports;
         }
 
         //追加ボタンがクリックされたときのイベントハンドラー
@@ -139,6 +140,7 @@ namespace CarReportSystem {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
+            
             dgvCarReports.Columns[5].Visible = false;
             btModifyReport.Enabled = false;
             btDeleteReport.Enabled = false;
@@ -307,6 +309,20 @@ namespace CarReportSystem {
             if (!cbAuthor.Items.Contains(auther)) {
                 cbAuthor.Items.Add(auther);
             }
+        }
+
+        private void carReportTableBindingNavigatorSaveItem_Click(object sender, EventArgs e) {
+            this.Validate();
+            this.carReportTableBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202316DataSet);
+
+        }
+
+        //接続ボタンイベントハンドラ
+        private void btConnection_Click(object sender, EventArgs e) {
+            // TODO: このコード行はデータを 'infosys202316DataSet.CarReportTable' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            this.carReportTableTableAdapter.Fill(this.infosys202316DataSet.CarReportTable);
+            
         }
     }
 }
