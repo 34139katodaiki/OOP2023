@@ -50,10 +50,17 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_2(string v) {
-            var employee = new Employee {
-                Id = 2,
+            var employee = new Employee[] {
+                new Employee {
+                    Id = 2,
                 Name = "a",
                 HireDate = DateTime.Today
+                },
+                new Employee {
+                    Id = 3,
+                Name = "bb",
+                HireDate = DateTime.Today
+                },
             };
             var setting = new XmlWriterSettings {
                 Encoding = new System.Text.UTF8Encoding(false),
@@ -71,8 +78,8 @@ namespace Exercise01 {
 
         private static void Exercise1_3(string v) {
             using (var reader = XmlReader.Create(v)) {
-                var serializer = new DataContractSerializer(typeof(Employee));
-                var employee = serializer.ReadObject(reader) as Employee;
+                var serializer = new DataContractSerializer(typeof(Employee[]));
+                var employee = serializer.ReadObject(reader) as Employee[];
 
             }
         }
