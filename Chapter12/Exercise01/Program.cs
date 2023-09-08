@@ -45,7 +45,7 @@ namespace Exercise01 {
             using (var reader = XmlReader.Create(v)) {
                 var serializer = new XmlSerializer(typeof(Employee));
                 var employeee = serializer.Deserialize(reader) as Employee;
-                
+                Console.WriteLine("{0},{1},{2}", employeee.Id, employeee.Name, employeee.HireDate);
             }
         }
 
@@ -80,17 +80,19 @@ namespace Exercise01 {
             using (var reader = XmlReader.Create(v)) {
                 var serializer = new DataContractSerializer(typeof(Employee[]));
                 var employee = serializer.ReadObject(reader) as Employee[];
-
+                foreach (var item in employee) {
+                    Console.WriteLine("{0},{1},{2}", item.Id, item.Name, item.HireDate);
+                }
             }
         }
         private static void Exercise1_4(string v) {
-            var employees = new Employee[] {
-                new Employee {
+            var employees = new Employee2[] {
+                new Employee2 {
                     Id = 2,
                 Name = "a",
                 HireDate = DateTime.Today
                 },
-                new Employee {
+                new Employee2 {
                     Id = 3,
                 Name = "b",
                 HireDate = DateTime.Today
@@ -103,5 +105,13 @@ namespace Exercise01 {
             }
 
         }
+    }
+    [DataContract]
+    public class Employee2 {
+        public int Id { get; set; }
+        [DataMember(Name = "name")]
+        public string Name { get; set; }
+        [DataMember(Name = "hiredate")]
+        public DateTime HireDate { get; set; }
     }
 }
