@@ -39,18 +39,18 @@ namespace CarReportSystem {
                 stasLabelDisp("車名入力して");
                 return;
             }
-            
-            var Car = new CarReport {
 
-            Date = dtpDate.Value,
-            Author = cbAuthor.Text,
-            Maker = getSelectedMaker(),
-            CarName = cbCarName.Text,
-            Report = tbReport.Text,
-            CarImage = pbCarImage.Image,
-            };
-            CarReports.Add(Car);
+            DataRow newRow = infosys202316DataSet.CarReportTable.NewRow();
 
+            newRow[1] = dtpDate.Value;
+            newRow[2] = cbAuthor.Text;
+            newRow[3] = getSelectedMaker();
+            newRow[4] = cbCarName.Text;
+            newRow[5] = tbReport.Text;
+            newRow[6] = ImageToByteArray(pbCarImage.Image);
+
+            infosys202316DataSet.CarReportTable.Rows.Add(newRow);
+            this.carReportTableTableAdapter.Update(infosys202316DataSet.CarReportTable);
             
             setcbCarname(cbCarName.Text);
             setcbAuther(cbAuthor.Text);
@@ -128,13 +128,11 @@ namespace CarReportSystem {
         }
 
         private void btDeleteReport_Click(object sender, EventArgs e) {
-            CarReports.Remove(CarReports[dgvCarReports.CurrentCell.RowIndex]);
+            dgvCarReports.Rows.RemoveAt(dgvCarReports.CurrentRow.Index);
+            carReportTableTableAdapter.Update(this.infosys202316DataSet.CarReportTable);
             clear();
-            //CarReports.RemoveAt(dgvCarReports.CurrentRow.Index);
-            if (CarReports.Count == 0) {
-                btModifyReport.Enabled = false;
-                btDeleteReport.Enabled = false;
-            }
+            
+            
         }
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -259,46 +257,46 @@ namespace CarReportSystem {
         }
 
         private void 保存SToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (sfdCarRepoSave.ShowDialog() == DialogResult.OK) {
-                try {
-                    //バイナリ形式でシリアル化
-                    var bf = new BinaryFormatter();
-                    using (FileStream fs = File.Open(sfdCarRepoSave.FileName, FileMode.Create)) {
-                        bf.Serialize(fs, CarReports);
+            //if (sfdCarRepoSave.ShowDialog() == DialogResult.OK) {
+            //    try {
+            //        //バイナリ形式でシリアル化
+            //        var bf = new BinaryFormatter();
+            //        using (FileStream fs = File.Open(sfdCarRepoSave.FileName, FileMode.Create)) {
+            //            bf.Serialize(fs, CarReports);
 
-                    }
-                }
-                catch (Exception ex) {
-                    MessageBox.Show(ex.Message);
-                }
+            //        }
+            //    }
+            //    catch (Exception ex) {
+            //        MessageBox.Show(ex.Message);
+            //    }
                 
-            }
+            //}
         }
 
         private void 開くToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (ofdCarRepoOpen.ShowDialog() == DialogResult.OK) {
-                try {
-                    //逆シリアル化でバイナリ形式を取り込む
-                    var bf = new BinaryFormatter();
-                    using(FileStream fs = File.Open(ofdCarRepoOpen.FileName, FileMode.Open,FileAccess.Read)) {
-                        CarReports = (BindingList<CarReport>)bf.Deserialize(fs);
-                        dgvCarReports.DataSource = null;
-                        dgvCarReports.DataSource = CarReports;
-                        dgvCarReports.ClearSelection();
-                        dgvCarReports.Columns[5].Visible = false;
-                        cbCarName.Items.Clear();
-                        cbAuthor.Items.Clear();
-                        foreach (var report in CarReports) {
-                            setcbAuther(report.Author);
-                            setcbCarname(report.CarName);
+            //if (ofdCarRepoOpen.ShowDialog() == DialogResult.OK) {
+            //    try {
+            //        //逆シリアル化でバイナリ形式を取り込む
+            //        var bf = new BinaryFormatter();
+            //        using(FileStream fs = File.Open(ofdCarRepoOpen.FileName, FileMode.Open,FileAccess.Read)) {
+            //            CarReports = (BindingList<CarReport>)bf.Deserialize(fs);
+            //            dgvCarReports.DataSource = null;
+            //            dgvCarReports.DataSource = CarReports;
+            //            dgvCarReports.ClearSelection();
+            //            dgvCarReports.Columns[5].Visible = false;
+            //            cbCarName.Items.Clear();
+            //            cbAuthor.Items.Clear();
+            //            foreach (var report in CarReports) {
+            //                setcbAuther(report.Author);
+            //                setcbCarname(report.CarName);
                             
-                        }
-                    }
-                }
-                catch (Exception ex) {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            //            }
+            //        }
+            //    }
+            //    catch (Exception ex) {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //}
         }
 
         private void setcbCarname(string carname) {
