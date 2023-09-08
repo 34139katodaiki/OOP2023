@@ -89,33 +89,31 @@ namespace CarReportSystem {
         }
 
         //指定したメーカーのラジオボタンをセット
-        private void setSelectedMaker(CarReport.MakerGroup makerGroup) {
+        private void setSelectedMaker(string makerGroup) {
             switch (makerGroup) {
-                case CarReport.MakerGroup.トヨタ:
+                case "トヨタ":
                     rbToyota.Checked = true;
                     break;
-                case CarReport.MakerGroup.日産:
+                case "日産":
                     rbNissan.Checked = true;
                     break;
-                case CarReport.MakerGroup.ホンダ:
+                case "ホンダ":
                     rbHonda.Checked = true;
                     break;
-                case CarReport.MakerGroup.スバル:
+                case "スバル":
                     rbSubaru.Checked = true;
                     break;
-                case CarReport.MakerGroup.スズキ:
+                case "スズキ":
                     rbSuzuki.Checked = true;
                     break;
-                case CarReport.MakerGroup.ダイハツ:
+                case "ダイハツ":
                     rbDaihatsu.Checked = true;
                     break;
-                case CarReport.MakerGroup.輸入車:
+                case "輸入車":
                     rbImported.Checked = true;
                     break;
-                case CarReport.MakerGroup.その他:
+                case "その他":
                     rbOther.Checked = true;
-                    break;
-                default:
                     break;
             }
 
@@ -141,7 +139,7 @@ namespace CarReportSystem {
 
         private void Form1_Load(object sender, EventArgs e) {
             
-            dgvCarReports.Columns[5].Visible = false;
+            dgvCarReports.Columns[6].Visible = false;
             btModifyReport.Enabled = false;
             btDeleteReport.Enabled = false;
             //tsTimeDisp.Text=(DateTime.Now.ToString("HH時mm分ss秒"));
@@ -166,13 +164,14 @@ namespace CarReportSystem {
         }
 
         private void cellcrick(object sender, DataGridViewCellEventArgs e) {
-            if (CarReports.Count != 0) {
-                dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
-                cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
-                setSelectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
-                cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
-                tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
-                pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
+            if (dgvCarReports.Rows.Count != 0) {
+                dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[1].Value;
+                cbAuthor.Text = dgvCarReports.CurrentRow.Cells[2].Value.ToString();
+                setSelectedMaker(dgvCarReports.CurrentRow.Cells[3].Value.ToString());
+                cbCarName.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
+                tbReport.Text = dgvCarReports.CurrentRow.Cells[5].Value.ToString();
+                pbCarImage.Image =ByteArrayToImage((byte[])dgvCarReports.CurrentRow.Cells[6].Value);
+
                 btModifyReport.Enabled = true;
                 btDeleteReport.Enabled = true;
             }
@@ -180,23 +179,16 @@ namespace CarReportSystem {
         }
 
         private void btModifyReport_Click(object sender, EventArgs e) {
-            stasLabelDisp("");
-            if (cbAuthor.Text == "") {
-                stasLabelDisp("記録者入力して");
-                return;
-                //MessageBox.Show("入力して");
-            }
-            else if (cbCarName.Text == "") {
-                stasLabelDisp("車名入力して");
-                return;
-            }
-            CarReports[dgvCarReports.CurrentRow.Index].Date = dtpDate.Value;
-            CarReports[dgvCarReports.CurrentRow.Index].Author = cbAuthor.Text;
-            CarReports[dgvCarReports.CurrentRow.Index].Maker = getSelectedMaker();
-            CarReports[dgvCarReports.CurrentRow.Index].CarName = cbCarName.Text;
-            CarReports[dgvCarReports.CurrentRow.Index].Report = tbReport.Text;
-            CarReports[dgvCarReports.CurrentRow.Index].CarImage = pbCarImage.Image;
-            dgvCarReports.Refresh();
+            dgvCarReports.CurrentRow.Cells[1].Value = dtpDate.Value;
+            dgvCarReports.CurrentRow.Cells[2].Value = cbAuthor.Text;
+            dgvCarReports.CurrentRow.Cells[3].Value = getSelectedMaker();
+            dgvCarReports.CurrentRow.Cells[4].Value = cbCarName.Text;
+            dgvCarReports.CurrentRow.Cells[5].Value = tbReport.Text;
+            dgvCarReports.CurrentRow.Cells[6].Value = pbCarImage.Image;
+            this.Validate();
+            this.carReportTableBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202316DataSet);
+            
         }
 
         private void clear() {
@@ -311,6 +303,23 @@ namespace CarReportSystem {
             }
         }
 
+
+        // バイト配列をImageオブジェクトに変換
+        public static Image ByteArrayToImage(byte[] b) {
+            ImageConverter imgconv = new ImageConverter();
+            Image img = (Image)imgconv.ConvertFrom(b);
+            return img;
+        }
+
+        // Imageオブジェクトをバイト配列に変換
+        public static byte[] ImageToByteArray(Image img) {
+            ImageConverter imgconv = new ImageConverter();
+            byte[] b = (byte[])imgconv.ConvertTo(img, typeof(byte[]));
+            return b;
+        }
+
+
+
         private void carReportTableBindingNavigatorSaveItem_Click(object sender, EventArgs e) {
             this.Validate();
             this.carReportTableBindingSource.EndEdit();
@@ -322,7 +331,7 @@ namespace CarReportSystem {
         private void btConnection_Click(object sender, EventArgs e) {
             // TODO: このコード行はデータを 'infosys202316DataSet.CarReportTable' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.carReportTableTableAdapter.Fill(this.infosys202316DataSet.CarReportTable);
-            
+            dgvCarReports.ClearSelection();
         }
     }
 }
