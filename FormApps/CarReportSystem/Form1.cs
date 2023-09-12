@@ -269,7 +269,7 @@ namespace CarReportSystem {
         }
 
         private void btdaySearch_Click(object sender, EventArgs e) {
-            //carReportTableTableAdapter.FillByDate(this.infosys202316DataSet.CarReportTable, dtpstart.Text,dtpend.Text);
+            carReportTableTableAdapter.FillByDateToDate(this.infosys202316DataSet.CarReportTable, dtpstart.Text,dtpend.Text);
         }
 
         private void btreset_Click(object sender, EventArgs e) {
