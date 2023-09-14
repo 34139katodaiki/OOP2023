@@ -120,7 +120,13 @@ namespace SampleEntityFramework {
         }
 
         private static void Exercise1_4() {
-        
+            using (var db = new BooksDbContext()) {
+                var oldbooks = db.Books.OrderBy(x => x.PublishedYear).Take(3).ToArray();
+                foreach (var book in oldbooks) {
+                    Console.WriteLine($"{book.Title} {book.Author.Name}");
+                }
+            }
+
         }
 
         private static void Exercise1_5() {
