@@ -130,7 +130,12 @@ namespace SampleEntityFramework {
         }
 
         private static void Exercise1_5() {
-        
+            using (var db = new BooksDbContext()) {
+                var books = db.Books.OrderByDescending(x => x.Author.Birthday).GroupBy(x => x.Author).ToArray();
+                foreach (var book in books) {
+                    Console.WriteLine($"{book.Key.Books} {book.Key.Name}");
+                }
+            }
         }
 
         // List 13-5
