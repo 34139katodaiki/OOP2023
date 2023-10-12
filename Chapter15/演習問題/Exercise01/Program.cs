@@ -39,15 +39,18 @@ namespace Exercise01 {
 
         private static void Exercise1_4() {
             var group = Library.Books.GroupBy(x => x.PublishedYear).Select(y => y.OrderByDescending(a => a.Price)
-            .OrderByDescending(b=>b.PublishedYear));
+            .OrderByDescending(b=>b.PublishedYear)
+            .Join(Library.Categories,book=>book.CategoryId,category=>category.Id,(book,category)=>
+            new { Title = book.Title, Category = category.Name, PublishYear = book.PublishedYear,Price = book.Price }));
             foreach (var books in group) {
                 foreach (var book in books) {
-                    Console.WriteLine("{0} {1}円 {2}", book.PublishedYear, book.Price, book.Title);
+                    Console.WriteLine("{0} {1}円 {2} ({3})", book.PublishYear, book.Price, book.Title, book.Category);
                 }
             }
         }
 
         private static void Exercise1_5() {
+            
         }
 
         private static void Exercise1_6() {
