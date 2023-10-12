@@ -25,23 +25,22 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_2() {
-            var book = Library.Books.Max(x => x.Price);
-            Console.WriteLine(book);
+            var book = Library.Books.OrderByDescending(x => x.Price).First();
+            Console.WriteLine("発行年:{0} カテゴリ:{1} 価格{2} :{3}",book.PublishedYear,book.CategoryId,book.Price,book.Title);
         }
 
         private static void Exercise1_3() {
-            var books = Library.Books.GroupBy(x => x.PublishedYear);
+            var books = Library.Books.GroupBy(x => x.PublishedYear).Select(g=>new { PublishedYear = g.Key,Count = g.Count() })
+                .OrderBy(x=>x.PublishedYear);
             foreach (var book in books) {
-                Console.WriteLine("{0} {1}",book.Key,book.Count());
+                Console.WriteLine("{0} {1}冊",book.PublishedYear,book.Count);
             }
-            
         }
 
         private static void Exercise1_4() {
-            var group = Library.Books.GroupBy(x => x.PublishedYear).Select(y => y.OrderByDescending(a => a.Price)
-            .OrderByDescending(b=>b.PublishedYear)
-            .Join(Library.Categories,book=>book.CategoryId,category=>category.Id,(book,category)=>
-            new { Title = book.Title, Category = category.Name, PublishYear = book.PublishedYear,Price = book.Price }));
+            var group = Library.Books.OrderByDescending(x => x.PublishedYear).GroupBy(x => x.PublishedYear).Select(y => y.OrderByDescending(x => x.Price)
+              .Join(Library.Categories, book => book.CategoryId, category => category.Id, (book, category) =>
+                     new { Title = book.Title, Category = category.Name, PublishYear = book.PublishedYear, Price = book.Price }));
             foreach (var books in group) {
                 foreach (var book in books) {
                     Console.WriteLine("{0} {1}円 {2} ({3})", book.PublishYear, book.Price, book.Title, book.Category);
