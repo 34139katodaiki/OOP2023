@@ -58,6 +58,15 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_6() {
+            var group = Library.Categories.
+            GroupJoin(Library.Books,c=>c.Id,b=>b.CategoryId,(c, b)
+            =>new { Category = c.Name,Book = b}).OrderBy(x=>x.Category);
+            foreach (var books in group) {
+                Console.WriteLine("#"+books.Category);
+                foreach (var book in books.Book) {
+                    Console.WriteLine("   {0}",book.Title);
+                }
+            }
         }
 
         private static void Exercise1_7() {
