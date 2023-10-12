@@ -49,7 +49,12 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_5() {
-            
+            var books = Library.Books.Where(x => x.PublishedYear == 2016)
+                .Join(Library.Categories, book => book.CategoryId, category => category.Id,
+                (book, category) => category.Name).Distinct();
+            foreach (var book in books) {
+                Console.WriteLine(book);
+            }
         }
 
         private static void Exercise1_6() {
