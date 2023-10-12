@@ -38,6 +38,13 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_4() {
+            var group = Library.Books.GroupBy(x => x.PublishedYear).Select(y => y.OrderByDescending(a => a.Price)
+            .OrderByDescending(b=>b.PublishedYear));
+            foreach (var books in group) {
+                foreach (var book in books) {
+                    Console.WriteLine("{0} {1}円 {2}", book.PublishedYear, book.Price, book.Title);
+                }
+            }
         }
 
         private static void Exercise1_5() {
