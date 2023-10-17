@@ -58,21 +58,37 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_6() {
-            var group = Library.Categories.
-            GroupJoin(Library.Books,c=>c.Id,b=>b.CategoryId,(c, b)
-            =>new { Category = c.Name,Book = b}).OrderBy(x=>x.Category);
-            foreach (var books in group) {
-                Console.WriteLine("#"+books.Category);
-                foreach (var book in books.Book) {
+            var g = Library.Books.Join(Library.Categories, book => book.CategoryId, category => category.Id, (book, category) =>
+                     new { Title = book.Title, Category = category.Name, PublishYear = book.PublishedYear, Price = book.Price }).
+                     GroupBy(x=>x.Category).OrderBy(x=>x.Key);
+            //var group = Library.Categories.
+            //GroupJoin(Library.Books,c=>c.Id,b=>b.CategoryId,(c, b)
+            //=>new { Category = c.Name,Book = b}).OrderBy(x=>x.Category);
+            foreach (var books in g) {
+                Console.WriteLine("#"+books.Key);
+                foreach (var book in books) {
                     Console.WriteLine("   {0}",book.Title);
                 }
             }
         }
 
         private static void Exercise1_7() {
+            var catid = Library.Categories.Single(c => c.Name == "Development").Id;
+            var groups = Library.Books.Where(b => b.CategoryId == catid).GroupBy(b => b.PublishedYear).OrderBy(b => b.Key);
+            foreach (var group in groups) {
+                Console.WriteLine("#{0}",group.Key);
+                foreach (var book in group) {
+                    Console.WriteLine("  {0}", book.Title);
+                }
+            }
         }
 
         private static void Exercise1_8() {
+            var query = Library.Categories.GroupJoin(Library.Books, c => c.Id, b => b.CategoryId, (c, b) =>
+                   new { CategoryName = c.Name, Count = b.Count() }).Where(x => x.Count >= 4);
+            foreach (var category in query) {
+                Console.WriteLine(category.CategoryName);
+            }
         }
     }
 }
