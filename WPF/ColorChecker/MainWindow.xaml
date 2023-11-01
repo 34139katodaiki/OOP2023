@@ -1,0 +1,58 @@
+﻿<Window x:Class="ColorChecker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ColorChecker"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="700">
+
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="colorArea" Content="" Background="Black" Margin="15"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="58"/>
+                <RowDefinition Height="58"/>
+                <RowDefinition Height="58"/>
+                <RowDefinition Height="55"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" HorizontalAlignment="Right"  Text="R" VerticalAlignment="Center" TextAlignment="Right" FontSize="18"/>
+            <Slider x:Name="rSlider" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Maximum="255" Margin="0,20,0,10" Width="134" ValueChanged="ValueChanged" TickPlacement="TopLeft" Height="29" TickFrequency="50"/>
+            <TextBox x:Name="rValue" Grid.Column="2" HorizontalAlignment="Left"  Text="{Binding ElementName=rSlider,Path=Value, Mode=TwoWay,StringFormat={}{0:0},UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontSize="18" Margin="0,16,0,17" Width="43"  />
+            <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right"  Text="G" VerticalAlignment="Center" TextAlignment="Right" FontSize="18"/>
+            <Slider x:Name="gSlider" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Maximum="255" Margin="0,21,0,10" Width="134" ValueChanged="ValueChanged" TickPlacement="TopLeft" Height="28" TickFrequency="50"/>
+            <TextBox x:Name="gValue" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left"  Text="{Binding ElementName=gSlider,Path=Value, Mode=TwoWay,StringFormat={}{0:0},UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontSize="18" Margin="0,16,0,17" Width="43"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right"  Text="B" VerticalAlignment="Center" TextAlignment="Right" FontSize="18"/>
+            <Slider x:Name="bSlider" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Maximum="255" Margin="0,22,0,10" Width="134" ValueChanged="ValueChanged" TickPlacement="TopLeft" Height="27" TickFrequency="50"/>
+            <TextBox x:Name="bValue" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left"  Text="{Binding ElementName=bSlider,Path=Value, Mode=TwoWay,StringFormat={}{0:0},UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontSize="18" Margin="0,16,0,17" Width="43" />
+            <ComboBox ItemsSource="{Binding}" SelectedValue="{Binding Color}" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Width="120" SelectionChanged="ComboBox_SelectionChanged" >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Border Width="20" Height="Auto" Margin="5,0" BorderThickness="1" BorderBrush="Black"  >
+                            <Border.Background>
+                                <SolidColorBrush Color="{Binding Color}"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+            </ComboBox>
+        </Grid>
+        <Button x:Name="stockbuttom" Content="STOCK" Grid.Column="2" VerticalAlignment="Top" Margin="15" Height="37" Click="stockButton_Click"/>
+        <ListBox x:Name="colorstock" Grid.Column="2" Margin="15,67,15,15" MouseDoubleClick="colorstock_MouseDoubleClick"  />
+
+    </Grid>
+</Window>

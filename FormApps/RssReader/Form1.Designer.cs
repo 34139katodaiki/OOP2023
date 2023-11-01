@@ -28,6 +28,8 @@ namespace RssReader {
             this.btGet = new System.Windows.Forms.Button();
             this.lbRssTitle = new System.Windows.Forms.ListBox();
             this.wbBrowser = new System.Windows.Forms.WebBrowser();
+            this.btoki = new System.Windows.Forms.Button();
+            this.tbokiname = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // tburl
@@ -66,17 +68,38 @@ namespace RssReader {
             this.wbBrowser.Size = new System.Drawing.Size(552, 534);
             this.wbBrowser.TabIndex = 3;
             // 
+            // btoki
+            // 
+            this.btoki.Location = new System.Drawing.Point(986, 63);
+            this.btoki.Name = "btoki";
+            this.btoki.Size = new System.Drawing.Size(98, 23);
+            this.btoki.TabIndex = 4;
+            this.btoki.Text = "お気に入り登録";
+            this.btoki.UseVisualStyleBackColor = true;
+            this.btoki.Click += new System.EventHandler(this.btoki_Click);
+            // 
+            // tbokiname
+            // 
+            this.tbokiname.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbokiname.Location = new System.Drawing.Point(798, 26);
+            this.tbokiname.Name = "tbokiname";
+            this.tbokiname.Size = new System.Drawing.Size(212, 31);
+            this.tbokiname.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(806, 642);
+            this.ClientSize = new System.Drawing.Size(1116, 642);
+            this.Controls.Add(this.tbokiname);
+            this.Controls.Add(this.btoki);
             this.Controls.Add(this.wbBrowser);
             this.Controls.Add(this.lbRssTitle);
             this.Controls.Add(this.btGet);
             this.Controls.Add(this.tburl);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -88,6 +111,8 @@ namespace RssReader {
         private System.Windows.Forms.Button btGet;
         private System.Windows.Forms.ListBox lbRssTitle;
         private System.Windows.Forms.WebBrowser wbBrowser;
+        private System.Windows.Forms.Button btoki;
+        private System.Windows.Forms.TextBox tbokiname;
     }
 }
 
