@@ -201,6 +201,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorChecker", "WPF\ColorCh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RssReader", "FormApps\RssReader\RssReader.csproj", "{5D919F1D-4ED2-4200-9A41-E72AF4DD6B67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleUnitConverter", "WPF\SampleUnitConverter\SampleUnitConverter.csproj", "{7FBC56E2-51B8-4DCB-B352-64FEF7DB72B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -467,6 +469,10 @@ Global
 		{5D919F1D-4ED2-4200-9A41-E72AF4DD6B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D919F1D-4ED2-4200-9A41-E72AF4DD6B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D919F1D-4ED2-4200-9A41-E72AF4DD6B67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FBC56E2-51B8-4DCB-B352-64FEF7DB72B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FBC56E2-51B8-4DCB-B352-64FEF7DB72B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FBC56E2-51B8-4DCB-B352-64FEF7DB72B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FBC56E2-51B8-4DCB-B352-64FEF7DB72B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -554,6 +560,7 @@ Global
 		{ED5F2C9C-1AC4-4CBB-932D-30125D33FB29} = {481A799A-5928-4756-8A5B-85998EA4A593}
 		{AA76820C-2E8E-4A65-BD56-A5487B3BAF0A} = {481A799A-5928-4756-8A5B-85998EA4A593}
 		{5D919F1D-4ED2-4200-9A41-E72AF4DD6B67} = {08415610-95FC-44E7-9AF8-FF8B90B9121A}
+		{7FBC56E2-51B8-4DCB-B352-64FEF7DB72B4} = {481A799A-5928-4756-8A5B-85998EA4A593}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {51BF56B0-BC85-4950-B171-D571B8660A38}
