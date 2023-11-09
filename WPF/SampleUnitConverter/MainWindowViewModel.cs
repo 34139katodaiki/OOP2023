@@ -7,48 +7,48 @@ using System.Windows.Input;
 
 namespace SampleUnitConverter {
     public class MainWindowViewModel : ViewModel {
-        private double metricValue, imperialValue;
+        private double gramValue, ounceValue;
 
-        public double MetricValue {
-            get { return this.metricValue; }
+        public double GramValue {
+            get { return this.gramValue; }
             set {
-                this.metricValue = value;
+                this.gramValue = value;
                 this.OnPropertyChanged();
             }
         }
 
-        public double ImperialValue {
-            get { return this.imperialValue; }
+        public double OunceValue {
+            get { return this.ounceValue; }
             set {
-                this.imperialValue = value;
+                this.ounceValue = value;
                 this.OnPropertyChanged();
             }
         }
 
         //上のComboBoxで選択されている値（単位）
-        public MetricUnit CurrentMetricUnit { get; set; }
+        public GramUnit CurrentGramUnit { get; set; }
 
         //下のComboBoxで選択されている値（単位）
-        public ImperialUnit CurrentImperialUnit { get; set; }
+        public OunceUnit CurrentOunceUnit { get; set; }
 
         //▲ボタンで呼ばれるコマンド
-        public ICommand ImperialUnitToMetric { get; private set; }
+        public ICommand OunceUnitToGram { get; private set; }
 
         //▲ボタンで呼ばれるコマンド
-        public ICommand MetricUnitToImperialUnit { get; private set; }
+        public ICommand GramUnitToOunceUnit { get; private set; }
 
         //コンストラクタ
         public MainWindowViewModel() {
-            this.CurrentMetricUnit = MetricUnit.Units.First();
-            this.CurrentImperialUnit = ImperialUnit.Units.First();
+            this.CurrentGramUnit = GramUnit.Units.First();
+            this.CurrentOunceUnit = OunceUnit.Units.First();
 
-            this.MetricUnitToImperialUnit = new DelegateCommand(
-                () => this.ImperialValue = this.CurrentImperialUnit.FromMetricUnit(
-                    this.CurrentMetricUnit, this.MetricValue));
+            this.GramUnitToOunceUnit = new DelegateCommand(
+                () => this.OunceValue = this.CurrentOunceUnit.FromGramUnit(
+                    this.CurrentGramUnit, this.GramValue));
 
-            this.ImperialUnitToMetric = new DelegateCommand(
-                () => this.MetricValue = this.CurrentMetricUnit.FromImperialUnit(
-                    this.CurrentImperialUnit, this.ImperialValue));
+            this.OunceUnitToGram = new DelegateCommand(
+                () => this.GramValue = this.CurrentGramUnit.FromOunceUnit(
+                    this.CurrentOunceUnit, this.OunceValue));
         }
 
     }

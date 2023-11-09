@@ -56,10 +56,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DelegateCommand.cs" />
-    <Compile Include="DistanceUnit.cs" />
-    <Compile Include="ImperialUnit.cs" />
+    <Compile Include="WeightUnit.cs" />
+    <Compile Include="OunceUnit.cs" />
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="MetricUnit.cs" />
+    <Compile Include="GramUnit.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

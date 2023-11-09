@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SampleUnitConverter {
-    public class DistanceUnit {
+    public class WeightUnit {
         public string Name { get; set; }
         public double Coefficient { get; set; }
         public override string ToString() {
