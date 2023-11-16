@@ -14,9 +14,9 @@ namespace RssReader {
     public partial class Form1 : Form {
         List<ItemData> ItemDatas = new List<ItemData>();
         List<Favo> Favolist = new List<Favo>();
+        //List<string> stlis = new List<string>();
         public Form1() {
             InitializeComponent();
-            
         }
 
         private void btGet_Click(object sender, EventArgs e) {
@@ -43,7 +43,6 @@ namespace RssReader {
             if (lbRssTitle.SelectedIndex == -1)
                 return;
             wbBrowser.Navigate(ItemDatas[lbRssTitle.SelectedIndex].Link);
-
         }
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -61,7 +60,11 @@ namespace RssReader {
                     lbRssTitle.Items.Add(node.Title);
                 }
             }
-            var oki = new Favo { URL = "https://news.yahoo.co.jp/rss/topics/it.xml", Name = "IT" };
+            var oki = new Favo { URL = "https://news.yahoo.co.jp/rss/topics/top-picks.xml", Name = "主要" };
+            Favolist.Add(oki);
+            lboki.Items.Add(oki.Name);
+
+            oki = new Favo { URL = "https://news.yahoo.co.jp/rss/topics/it.xml", Name = "IT" };
             Favolist.Add(oki);
             lboki.Items.Add(oki.Name);
 
@@ -73,21 +76,37 @@ namespace RssReader {
             Favolist.Add(oki);
             lboki.Items.Add(oki.Name);
 
+            lboki.SelectedIndex = 0;
+
             tburl.Text = "https://news.yahoo.co.jp/rss/topics/top-picks.xml";
         }
 
         private void btoki_Click(object sender, EventArgs e) {
+            if (tburl.Text=="") {
+                return;
+            }
+            
+            if (tbokiname.Text=="") {
+                return;
+            }
             Favolist.Add(new Favo { URL = tburl.Text, Name = tbokiname.Text });
             var oki = new Favo { URL = tburl.Text, Name = tbokiname.Text };
             lboki.Items.Add(oki.Name);
+
+            //if (tbokiname.Text == "") {
+            //    return;
+            //}
+            //stlis.Add(tburl.Text);
+            //lboki.Items.Add(tbokiname.Text);
+
         }
 
-        private void lboki_Click(object sender, EventArgs e) {
+        private void lboki_MouseClick(object sender, MouseEventArgs e) {
             var selected = lboki.SelectedIndex;
-            tburl.Text= Favolist[selected].URL;
+            tburl.Text = Favolist[selected].URL;
+
+            //tburl.Text = stlis[selected];
         }
-
-
     }
 
     public class Favo {

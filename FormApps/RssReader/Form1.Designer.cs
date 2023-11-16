@@ -40,14 +40,14 @@ namespace RssReader {
             this.tburl.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tburl.Location = new System.Drawing.Point(36, 26);
             this.tburl.Name = "tburl";
-            this.tburl.Size = new System.Drawing.Size(540, 31);
+            this.tburl.Size = new System.Drawing.Size(513, 31);
             this.tburl.TabIndex = 0;
             // 
             // btGet
             // 
-            this.btGet.Location = new System.Drawing.Point(589, 26);
+            this.btGet.Location = new System.Drawing.Point(566, 26);
             this.btGet.Name = "btGet";
-            this.btGet.Size = new System.Drawing.Size(75, 31);
+            this.btGet.Size = new System.Drawing.Size(98, 31);
             this.btGet.TabIndex = 1;
             this.btGet.Text = "取得";
             this.btGet.UseVisualStyleBackColor = true;
@@ -57,9 +57,9 @@ namespace RssReader {
             // 
             this.lbRssTitle.FormattingEnabled = true;
             this.lbRssTitle.ItemHeight = 12;
-            this.lbRssTitle.Location = new System.Drawing.Point(497, 88);
+            this.lbRssTitle.Location = new System.Drawing.Point(296, 136);
             this.lbRssTitle.Name = "lbRssTitle";
-            this.lbRssTitle.Size = new System.Drawing.Size(167, 532);
+            this.lbRssTitle.Size = new System.Drawing.Size(368, 484);
             this.lbRssTitle.TabIndex = 2;
             this.lbRssTitle.Click += new System.EventHandler(this.click);
             // 
@@ -74,9 +74,9 @@ namespace RssReader {
             // 
             // btoki
             // 
-            this.btoki.Location = new System.Drawing.Point(345, 88);
+            this.btoki.Location = new System.Drawing.Point(566, 85);
             this.btoki.Name = "btoki";
-            this.btoki.Size = new System.Drawing.Size(98, 23);
+            this.btoki.Size = new System.Drawing.Size(98, 32);
             this.btoki.TabIndex = 4;
             this.btoki.Text = "お気に入り登録";
             this.btoki.UseVisualStyleBackColor = true;
@@ -86,8 +86,9 @@ namespace RssReader {
             // 
             this.tbokiname.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tbokiname.Location = new System.Drawing.Point(36, 88);
+            this.tbokiname.Multiline = true;
             this.tbokiname.Name = "tbokiname";
-            this.tbokiname.Size = new System.Drawing.Size(286, 20);
+            this.tbokiname.Size = new System.Drawing.Size(513, 29);
             this.tbokiname.TabIndex = 5;
             // 
             // lboki
@@ -98,7 +99,7 @@ namespace RssReader {
             this.lboki.Name = "lboki";
             this.lboki.Size = new System.Drawing.Size(193, 148);
             this.lboki.TabIndex = 6;
-            this.lboki.Click += new System.EventHandler(this.lboki_Click);
+            this.lboki.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lboki_MouseClick);
             // 
             // label1
             // 
