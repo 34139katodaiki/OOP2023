@@ -51,20 +51,18 @@ namespace ColorChecker {
         private void colorstock_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
             var selected = colorstock.SelectedItem;
             var color = myColors.Find(x => x.Name == selected.ToString());
-            rValue.Text = color.Color.R.ToString();
-            gValue.Text = color.Color.G.ToString();
-            bValue.Text = color.Color.B.ToString();
-
-
+            setcolor(color);
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             var selected = (MyColor)((ComboBox)sender).SelectedItem;
-            rValue.Text = selected.Color.R.ToString();
-            gValue.Text = selected.Color.G.ToString();
-            bValue.Text = selected.Color.B.ToString();
+            setcolor(selected);
         }
-
+        public void setcolor(MyColor color) {
+            rValue.Text = color.Color.R.ToString();
+            gValue.Text = color.Color.G.ToString();
+            bValue.Text = color.Color.B.ToString();
+        }
         
     }
     public class MyColor {

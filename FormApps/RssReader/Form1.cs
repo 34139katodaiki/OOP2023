@@ -107,6 +107,7 @@ namespace RssReader {
 
             //tburl.Text = stlis[selected];
         }
+
     }
 
     public class Favo {

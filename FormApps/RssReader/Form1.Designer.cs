@@ -69,7 +69,7 @@ namespace RssReader {
             this.wbBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbBrowser.Name = "wbBrowser";
             this.wbBrowser.ScriptErrorsSuppressed = true;
-            this.wbBrowser.Size = new System.Drawing.Size(552, 596);
+            this.wbBrowser.Size = new System.Drawing.Size(583, 596);
             this.wbBrowser.TabIndex = 3;
             // 
             // btoki
@@ -84,7 +84,7 @@ namespace RssReader {
             // 
             // tbokiname
             // 
-            this.tbokiname.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbokiname.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tbokiname.Location = new System.Drawing.Point(36, 88);
             this.tbokiname.Multiline = true;
             this.tbokiname.Name = "tbokiname";
@@ -123,7 +123,7 @@ namespace RssReader {
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1279, 642);
+            this.ClientSize = new System.Drawing.Size(1323, 642);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lboki);
@@ -134,7 +134,7 @@ namespace RssReader {
             this.Controls.Add(this.btGet);
             this.Controls.Add(this.tburl);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "RSS Reader";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
